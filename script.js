@@ -240,19 +240,37 @@ function cau13() {
     alert("-1");
 }
 
-function cau15() {
-    let s = prompt("Nhập chuỗi:");
-    let o = {};
 
-    for (let i = 0; i < s.length; i++) {
-        let c = s[i];
-
-        if (!o[c]) {
-            o[c] = [];
-        }
-
-        o[c].push(i);
+function cau14() {
+    let input = prompt("Nhập các từ, cách nhau bằng dấu phẩy:");
+    if (!input) return;
+    let arr = input.split(","); // tách từ theo dấu phẩy
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] = arr[i].trim(); // loại bỏ khoảng trắng
     }
-
-    alert(JSON.stringify(o));
+    let count = {};
+    let out = [];
+    for (let i = 0; i < arr.length; i++) {
+        let w = arr[i];
+        if (count[w] === undefined) {
+            count[w] = 1;
+        } else {
+            count[w] += 1;
+        }
+    }
+    for (let w in count) {
+        if (count[w] > 1) {
+            out.push(w + "s");
+        } else {
+            out.push(w);
+        }
+    }
+    let result = "";
+    for (let i = 0; i < out.length; i++) {
+        result += out[i];
+        if (i < out.length - 1) {
+            result += ", ";
+        }
+    }
+    alert(result);
 }
