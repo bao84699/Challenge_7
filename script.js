@@ -240,37 +240,50 @@ function cau13() {
     alert("-1");
 }
 
+function cau15() {
+    let s = prompt("Nhập chuỗi:");
+    let o = {};
+
+    for (let i = 0; i < s.length; i++) {
+        let c = s[i];
+
+        if (!o[c]) {
+            o[c] = [];
+        }
+
+        o[c].push(i);
+    }
+
+    alert(JSON.stringify(o));
+}
 
 function cau14() {
-    let input = prompt("Nhập các từ, cách nhau bằng dấu phẩy:");
+    // Nhập các từ cách nhau bởi dấu phẩy
+    let input = prompt("Nhập các từ (cách nhau bằng dấu phẩy):");
     if (!input) return;
-    let arr = input.split(","); // tách từ theo dấu phẩy
-    for (let i = 0; i < arr.length; i++) {
-        arr[i] = arr[i].trim(); // loại bỏ khoảng trắng
-    }
-    let count = {};
-    let out = [];
-    for (let i = 0; i < arr.length; i++) {
-        let w = arr[i];
+
+    let words = input.split(","); // tách thành mảng
+    let count = {}; // lưu số lần xuất hiện của từng từ
+
+    // Đếm số lần xuất hiện
+    for (let i = 0; i < words.length; i++) {
+        let w = words[i].trim(); // loại bỏ khoảng trắng
         if (count[w] === undefined) {
             count[w] = 1;
         } else {
             count[w] += 1;
         }
     }
+
+    let result = [];
+    // Tạo mảng kết quả
     for (let w in count) {
         if (count[w] > 1) {
-            out.push(w + "s");
+            result.push(w + "s"); // thêm "s" nếu từ xuất hiện > 1
         } else {
-            out.push(w);
+            result.push(w); // giữ nguyên nếu xuất hiện 1 lần
         }
     }
-    let result = "";
-    for (let i = 0; i < out.length; i++) {
-        result += out[i];
-        if (i < out.length - 1) {
-            result += ", ";
-        }
-    }
-    alert(result);
+
+    alert(result.join(", ")); // hiển thị kết quả
 }
